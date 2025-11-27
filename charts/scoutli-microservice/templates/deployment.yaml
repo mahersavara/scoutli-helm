@@ -27,5 +27,10 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+          # Tự động lấy thông tin DB từ Secret scoutli-db-credentials
+          envFrom:
+            - secretRef:
+                name: scoutli-db-credentials
+                optional: true 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
